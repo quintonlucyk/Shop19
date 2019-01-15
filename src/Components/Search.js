@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Data } from '../Config/data.js';
 
 class Search extends Component {
 
@@ -7,23 +8,17 @@ class Search extends Component {
     super(props);
     this.state = {searchValue: ""};
   }
-  /*
-  handleChange = event => {
-    this.setState({ value: event.target.value });
-    let data = {};
-    data[this.props.id] = event.target.value;
-    console.log(data);
-    this.props.saveValues(data);
-    this.props.dispatch({
-      type: "ADD_SINGLENUM",
-      id: this.props.id,
-      payload: event.target.value
-    });
-  };
-  */
 
   triggerSearch = () => {
-    console.log('search');
+    let resultsReturned = [];
+    if (this.searchValue !== ""){
+      for (let wasteItem of Data) {
+        if (wasteItem["keywords"].indexOf(this.state.searchValue) !== -1) {
+          resultsReturned.push(wasteItem);
+        }
+      }
+      this.props.onResultsReturned(resultsReturned);
+    }
   };
 
   inputKeyUp = (event) => {
