@@ -27,6 +27,9 @@ class Search extends Component {
     } else {
       this.setState({searchValue: event.target.value});
     }
+    if (event.keyCode === 8 && event.target.value == ""){
+      this.props.onResultsReturned([]);
+    }
   };
 
   render() {

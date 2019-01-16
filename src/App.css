@@ -42,3 +42,12 @@
   width:50%;
   margin-right:1rem;
 }
+.star {
+  margin-right:.6rem;
+}
+.greyStar{
+  color:grey;
+}
+.greenStar{
+  color:green;
+}
