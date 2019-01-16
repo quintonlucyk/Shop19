@@ -20,10 +20,6 @@ class App extends Component {
     };
   }
 
-  componentDidUpdate() {
-
-  }
-
   handleSearchResults = (results) => {
     this.setState({searchResults: results});
   };
@@ -34,10 +30,11 @@ class App extends Component {
     this.setState({favourites: newFavourites});
   };
 
-  removeFavourite = (result) => {
+  removeFavourite = (favObj) => {
     let newFavourites = this.state.favourites;
-    newFavourites.filter(favourite => favourite.value != result);
+    newFavourites = newFavourites.filter(favourite => favourite != favObj);
     this.setState({favourites: newFavourites});
+    
   };
 
   render() {

@@ -7,7 +7,6 @@ class Result extends Component {
   constructor(props) {
     super(props);
     let prevFav = false;
-    console.log(this.props.favObjs);
     if (this.props.favObjs && this.props.favObjs.indexOf(this.props.resultObj) != -1){
       prevFav = true;
     }
@@ -15,16 +14,19 @@ class Result extends Component {
   }
 
   addFavourite = () => {
-    if (this.state.favourite === false){
-      this.setState({favourite: !this.state.favourite});
+    if (!this.state.favourite || (this.props.favObjs && this.props.favObjs.indexOf(this.props.resultObj) == -1)){
+      this.setState({favourite: true});
       this.props.onAddFavourite(this.props.resultObj);
     }
   };
 
   classNameStar = () => {
-    if (this.state.favourite || (this.props.favObjs && this.props.favObjs.indexOf(this.props.resultObj) != -1))
+    if (this.props.favObjs && this.props.favObjs.indexOf(this.props.resultObj) == -1)
+      return "star greyStar";
+    else if (this.state.favourite)
       return "star greenStar";
-    return "star greyStar";
+    else
+      return "star greyStar";
   };
 
   render() {
