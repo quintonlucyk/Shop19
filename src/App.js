@@ -30,7 +30,6 @@ class App extends Component {
 
   addFavourite = (result) => {
     let newFavourites = this.state.favourites;
-    console.log(result);
     newFavourites.push(result);
     this.setState({favourites: newFavourites});
   };
@@ -46,18 +45,16 @@ class App extends Component {
       let Parser = require('html-react-parser');
       let body = Parser(result.body);
       return (
-        <Result resultObj={result} body={body} title={result.title} onAddFavourite={this.addFavourite}/>
+        <Result favObjs={this.state.favourites} resultObj={result} body={body} title={result.title} onAddFavourite={this.addFavourite}/>
       );
     });
     let favouriteResults = [];
     if (this.state.favourites.length > 1){
-      console.log(this.state.favourites);
       favouriteResults = this.state.favourites.map(favourite => {
-        console.log(favourite);
         let Parser = require('html-react-parser');
         let favBody = Parser(favourite.body);
         return (
-          <Favourite body={favBody} title={favourite.title} onRemoveFavourite={this.removeFavourite}/>
+          <Favourite favObj={favourite} body={favBody} title={favourite.title} onRemoveFavourite={this.removeFavourite}/>
         );
       });
     }
@@ -66,6 +63,9 @@ class App extends Component {
         <Header />
         <Search onResultsReturned={this.handleSearchResults} />
         {searchResults}
+        {this.state.favourites.length > 1 ? (
+          <div className="favouritesTitle">Favourites</div>
+        ) : null}
         {favouriteResults}
       </div>
     );

@@ -6,20 +6,23 @@ class Result extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {favourite: false};
+    let prevFav = false;
+    console.log(this.props.favObjs);
+    if (this.props.favObjs && this.props.favObjs.indexOf(this.props.resultObj) != -1){
+      prevFav = true;
+    }
+    this.state = {favourite: prevFav};
   }
 
   addFavourite = () => {
     if (this.state.favourite === false){
       this.setState({favourite: !this.state.favourite});
-      console.log(this.props);
-      console.log(this.props.result);
       this.props.onAddFavourite(this.props.resultObj);
     }
   };
 
   classNameStar = () => {
-    if (this.state.favourite)
+    if (this.state.favourite || (this.props.favObjs && this.props.favObjs.indexOf(this.props.resultObj) != -1))
       return "star greenStar";
     return "star greyStar";
   };

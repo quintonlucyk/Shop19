@@ -9,7 +9,7 @@ class Favourite extends Component {
   }
 
   removeFavourite = () => {
-    this.props.onRemoveFavourite(this.props.title);
+    this.props.onRemoveFavourite(this.props.favObj);
   };
 
   render() {

@@ -49,5 +49,10 @@
   color:grey;
 }
 .greenStar{
-  color:green;
+  color:rgb(0,167,96);
+}
+.favouritesTitle{
+  font-size:2rem;
+  color:rgb(0,167,96);
+  margin-left:1rem;
 }
